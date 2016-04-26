@@ -164,7 +164,7 @@ begin {
 	#Checks status of the specified service
 	function ServiceStatus($SvcName, $DC) {
 		Add-Content $Log ((Get-Date -Format hh:mm:ss)+": 0:1-Action: Running Service test: "+($SvcName)+" for: "+($DC))
-		$SvcStatus = start-job -scriptblock {get-service -ComputerName $($args[0]) -Name $($args[1]) -ErrorAction SilentlyContinue} -ArgumentList $DC,$SvcName | 		Wait-Job -timeout $TimeOut
+		$SvcStatus = start-job -scriptblock {get-service -ComputerName $($args[0]) -Name $($args[1]) -ErrorAction SilentlyContinue} -ArgumentList $DC,$SvcName | Wait-Job -timeout $TimeOut
 		if($SvcStatus.state -like "Running") {
 			Return ("<td bgcolor=$TimeOutColor align=center><b>Timeout</b></td>")
 			Stop-Job $SvcStatus
