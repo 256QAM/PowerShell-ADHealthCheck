@@ -25,8 +25,8 @@
 		Puts the script into encrypted password creation mode. No input required.
 		
 	.PARAMETER Password
-		The E-Mail password to be encrypted and stored. Only needed when the '-CreatePassFile' switch is used. Input should be 
-		plaintext string.
+		The E-Mail password to be encrypted and stored. Only needed when the '-CreatePassFile' switch is used. Input 
+		should be plaintext string.
 		
 	.PARAMETER NoEmail
 		Bypasses the email reporting module. No input required.
@@ -45,8 +45,8 @@
 	.PARAMETER Days
 		How long, in days, should the script look back for Directory Service Event Log errors. Input should be 
 		positive integer.
-         
-    .NOTES
+
+	.NOTES
 		Author: Stephen Arnold
 		
 		Version: 1.1 - 04/26/2016
@@ -66,7 +66,7 @@
 		Version 0.1
 			Everything else.
   
-    .EXAMPLE
+	.EXAMPLE
 		.\ADHealthCheck.ps1
 		Runs the script with default values.
 	
@@ -105,8 +105,8 @@ begin {
 
 	#Set some basic variables, report paths and colors
 	$ReportDate = 	(Get-Date)
-	$Report = 		$ReportPath
-	$Log = 			$LogPath
+	$Report = 	$ReportPath
+	$Log = 		$LogPath
 	$NameColor = 	'LightGrey'
 	$TimeOutColor = 'GoldenRod'
 	$OnlineColor = 	'LawnGreen'
@@ -163,8 +163,8 @@ begin {
 
 	#Checks status of the specified service
 	function ServiceStatus($SvcName, $DC) {
-				Add-Content $Log ((Get-Date -Format hh:mm:ss)+": 0:1-Action: Running Service test: "+($SvcName)+" for: "+($DC))
-		$SvcStatus = start-job -scriptblock {get-service -ComputerName $($args[0]) -Name $($args[1]) -ErrorAction SilentlyContinue} -ArgumentList $DC,$SvcName | Wait-Job -timeout $TimeOut
+		Add-Content $Log ((Get-Date -Format hh:mm:ss)+": 0:1-Action: Running Service test: "+($SvcName)+" for: "+($DC))
+		$SvcStatus = start-job -scriptblock {get-service -ComputerName $($args[0]) -Name $($args[1]) -ErrorAction SilentlyContinue} -ArgumentList $DC,$SvcName | 		Wait-Job -timeout $TimeOut
 		if($SvcStatus.state -like "Running") {
 			Return ("<td bgcolor=$TimeOutColor align=center><b>Timeout</b></td>")
 			Stop-Job $SvcStatus
@@ -206,12 +206,12 @@ begin {
 		Add-Content $Log ((Get-Date -Format hh:mm:ss)+": 0:1-Action: Attempting to get event log information for: "+($DC))
 		try {
 			$Count = invoke-Command -ComputerName $DC -ArgumentList $DC,$DaysA -ScriptBlock { `
-				(Get-EventLog `
-				  -LogName "Directory Service" `
-				  -EntryType Error `
-				  -ComputerName $($args[0]) `
-				  -After (Get-Date).AddDays($($args[1])) `
-				).Count
+			 (Get-EventLog `
+			  -LogName "Directory Service" `
+			  -EntryType Error `
+			  -ComputerName $($args[0]) `
+			  -After (Get-Date).AddDays($($args[1])) `
+			 ).Count
 			}
 		} catch {
 			$Count = ("<font color=$FailColor>Error: "+($_.Exception.Message)+"</font>")
@@ -426,5 +426,3 @@ End {
 		Exit 0
 	}
 }
-
-#SCA-04/2016
