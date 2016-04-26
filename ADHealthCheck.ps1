@@ -138,13 +138,13 @@ begin {
 			Clear-Host
 			Write-Host "Password created. Please re-run script without the '-CreatePassFile' switch"
 			Write-Host "Press any key to end..."
-			$host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+			$host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown") > $null
 		} catch {
 			Add-Content $Log ((Get-Date -Format hh:mm:ss)+': 0:0-Error:  Passfile creation at ".\Resources\MailPassword" failed: '+($_.Exception.Message))
 			Clear-Host
 			Write-Host "Password creation failed. Please review logs and re-run"
 			Write-Host "Press any key to end..."
-			$host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+			$host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown") > $null
 		}
 		break
 	}
