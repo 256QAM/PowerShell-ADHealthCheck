@@ -1,8 +1,8 @@
 $MailParams = @{
 	'ToAddress'		= 'username@domain.com'
-	'FromAddress'	= 'username@domain.com'
+	'FromAddress'		= 'username@domain.com'
 	'Subject' 		= 'Active Directory Health Report'
-	'SMTPServer' 	= 'smtp.mailserver.com'
+	'SMTPServer' 		= 'smtp.mailserver.com'
 	'Port'			= '995'
 	'SSL'			= $true
 	'UseAuth'		= $true
