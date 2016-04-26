@@ -20,6 +20,9 @@
 		
 		E-Mail settings can be adjusted in the '.\Resources\MailParams.ps1' file. It is not reccomended or needed 
 		to adjust the 'Password' paramter.
+		
+		This script only supports environments with Forest/Domain Functional Levels of Windows Server 2008 and 
+		newer!
 	
 	.PARAMETER CreatePassFile
 		Puts the script into encrypted password creation mode. No input required.
@@ -81,7 +84,7 @@
 	.EXAMPLE
 		.\ADHealthCheck.ps1 -ReportPath 'ReportName.html' -Days 2
 		Runs script with a custom report name, 'ReportName.html' and looks for Event Log errors within the last
-		  48 hours.
+		48 hours.
 		  
 	.EXAMPLE
 		.\ADHealthCheck.ps1 -NoEmail
