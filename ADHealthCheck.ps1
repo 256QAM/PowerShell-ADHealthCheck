@@ -310,7 +310,7 @@ process {
 			Add-Content $Report (ServiceStatus "Netlogon" $ID)
 			Add-Content $Report (ServiceStatus "NTDS" $ID)
 			Add-Content $Report (ServiceStatus "DNS" $ID)
-			Add-Content $Report (ServiceStatus "DFSREvent" $ID)
+			Add-Content $Report (ServiceStatus "DFSR" $ID)
 			Add-Content $Report (ServiceDiag "NetLogons" $ID)
 			Add-Content $Report (ServiceDiag "Replications" $ID)
 			Add-Content $Report (ServiceDiag "DFSREvent" $ID)
